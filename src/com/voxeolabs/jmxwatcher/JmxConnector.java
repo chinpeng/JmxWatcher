@@ -1,4 +1,4 @@
-package com.voxeolabs.test;
+package com.voxeolabs.jmxwatcher;
 
 import java.util.Hashtable;
 import java.util.Map;

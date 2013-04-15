@@ -1,4 +1,4 @@
-package com.voxeolabs.test;
+package com.voxeolabs.jmxwatcher;
 
 import java.io.IOException;
 import java.io.InputStream;

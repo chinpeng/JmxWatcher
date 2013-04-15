@@ -1,4 +1,4 @@
-package com.voxeolabs.test;
+package com.voxeolabs.jmxwatcher;
 
 import javax.management.Notification;
 import javax.management.NotificationListener;

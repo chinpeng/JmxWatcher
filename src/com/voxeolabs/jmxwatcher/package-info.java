@@ -5,4 +5,4 @@
  * @author jdyer
  *
  */
-package com.voxeolabs.test;
+package com.voxeolabs.jmxwatcher;
