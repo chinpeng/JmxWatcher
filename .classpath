@@ -6,12 +6,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/Users/jdyer/Dropbox/Projects/workspace/test/lib/httpcomponents-core-4.2/javadoc/"/>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/Users/jdyer/Dropbox/Projects/workspace/test/lib/httpcomponents-core-4.2/lib"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="lib" path="lib/commons-codec-1.6.jar"/>
 	<classpathentry kind="lib" path="lib/commons-codec-1.7.jar"/>
 	<classpathentry kind="lib" path="lib/commons-logging-1.1.1.jar"/>

@@ -12,8 +12,7 @@ import java.util.Map;
 	    private int graphitePort;
 	    private String nodeIdentifier;
 
-	    public GraphiteLogger(String graphiteHost,
-	                          int graphitePort) {
+	    public GraphiteLogger(String graphiteHost, int graphitePort) {
 	        this.graphiteHost = graphiteHost;
 	        this.graphitePort = graphitePort;
 	        try {
@@ -78,7 +77,7 @@ import java.util.Map;
 
 	    private void logToGraphite(StringBuffer lines) throws Exception {
 	        String msg = lines.toString();
-	        System.out.println("Writing [{}] to graphite " + msg);
+	        System.out.println("Writing ["+msg.replaceAll("\\r|\\n", "")+"] to graphite ");
 	        Socket socket = new Socket(graphiteHost, graphitePort);
 	        try {
 	            Writer writer = new OutputStreamWriter(socket.getOutputStream());

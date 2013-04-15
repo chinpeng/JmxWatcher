@@ -7,7 +7,6 @@ public class JMXTest {
 
 	
 	private static JmxPoller poller;
-	private static Runnable JmxPoller;
 
 	public static void main(String[] args) throws Exception {
 		//GraphiteLogger GL = new GraphiteLogger("192.168.56.4",2003);
@@ -24,12 +23,19 @@ public class JMXTest {
 		//JMXTest helper = new JMXTest(args[0], args[1], args[2]);
 		//
 
-
+		//GraphiteLogger GraphiteLogger = new GraphiteLogger("192.168.56.4",2003);
 		Thread t1 = new Thread(
-				poller = new JmxPoller("127.0.0.1:47520", null,null);
-				System.out.println("Licensed media license port:"+poller.getLicensedMediaPorts());
-				System.out.println("Active media license port:"+poller.getActiveMediaPorts());
-				);
+			new JmxPoller(
+					"10.6.69.203:47520",
+					"voxeo",
+					"voxeo_labs_2011FTW",
+					5000,
+					new GraphiteLogger("192.168.56.4",2003)
+				)
+		);
+				//System.out.println("Licensed media license port:"+poller.getLicensedMediaPorts());
+				//System.out.println("Active media license port:"+poller.getActiveMediaPorts());
+				//);
 				//new GraphiteFactory("127.0.0.1",9001,3000)
 				//int s = gf.sendMetric();
 				//System.out.println("=> " + s);
@@ -40,4 +46,3 @@ public class JMXTest {
 		//Thread.sleep(5000);
 	}
 }
-
