@@ -12,6 +12,13 @@
         <configuration>
           <source>1.6</source>
           <target>1.6</target>
+          <archive>
+      <manifest>
+      <addClasspath>true</addClasspath>
+      <classpathPrefix>lib/</classpathPrefix>
+          <mainClass>com.voxeolabs.jmxwatcher</mainClass>
+      </manifest>
+    </archive>
         </configuration>
       </plugin>
     </plugins>
@@ -26,7 +33,7 @@
         <artifactId>commons-logging</artifactId>
         <version>1.1.1</version>
     </dependency> -->
-    
+
     <!-- remove the real commons-logging from classpath -->
 <!-- declare as provided or exclude from spring jars -->
 <dependency>
@@ -44,7 +51,7 @@
     <scope>compile</scope>
 </dependency>
 
-<!-- add commons logging to slf4j bridge to classpath --> 
+<!-- add commons logging to slf4j bridge to classpath -->
 <!-- acts as jcl but routes commons-logging calls to slf4j -->
 <dependency>
     <groupId>org.slf4j</groupId>
@@ -90,6 +97,6 @@
             <scope>compile</scope>
         </dependency>
   	</dependencies>
-  	
+
   </dependencyManagement>
 </project>

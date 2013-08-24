@@ -8,10 +8,11 @@ import javax.management.ObjectName;
 import javax.management.ReflectionException;
 
 public class JmxPoller extends JmxConnector implements Runnable{
-	
+
 	public int sleepTime = 3000;
+
 	private GraphiteLogger GraphiteLogger;
-	
+
 	public JmxPoller(String jmxServer, String username, String password, int sleepTime) throws Exception {
 		super(jmxServer, username, password);
 		setSleepTime(sleepTime);
@@ -22,16 +23,32 @@ public class JmxPoller extends JmxConnector implements Runnable{
 		setSleepTime(sleepTime);
 		setGraphiteLogger(GraphiteLogger);
 	}
-	
+
 	public JmxPoller(String jmxServer, String username, String password) throws Exception {
 		super(jmxServer, username, password);
-		setSleepTime(30000);
+		setSleepTime(sleepTime);
 	}
-	
+
+  public JmxPoller(String jmxServer, GraphiteLogger GraphiteLogger) throws Exception {
+    super(jmxServer);
+    setSleepTime(sleepTime);
+    setGraphiteLogger(GraphiteLogger);
+  }
+
+  public JmxPoller(String jmxServer, int sleepTime, GraphiteLogger GraphiteLogger) throws Exception {
+    super(jmxServer);
+    setSleepTime(sleepTime);
+    setGraphiteLogger(GraphiteLogger);
+  }
+
+  public JmxPoller(String jmxServer) throws Exception {
+    super(jmxServer);
+  }
+
 	private void setSleepTime(int sleepTime) {
 		this.sleepTime = sleepTime;
 	}
-	
+
 	private void setGraphiteLogger(GraphiteLogger gl){
 		this.GraphiteLogger = gl;
 	}
@@ -49,14 +66,13 @@ public class JmxPoller extends JmxConnector implements Runnable{
 		Object port = msc.invoke(mediaObj, "getLicensedMRCPPorts", new Object[0], new String[0]);
 		return Integer.parseInt(port.toString());
 	}
-	
+
 	public int getActiveAppSession() throws MalformedObjectNameException, NullPointerException,
 	InstanceNotFoundException, MBeanException, ReflectionException, IOException {
 		ObjectName mediaObj = new ObjectName("com.micromethod.sipmethod:type=server.service,name=sip");
 		Object port = msc.invoke(mediaObj, "getActiveAppSession", new Object[0], new String[0]);
 		return Integer.parseInt(port.toString());
 	}
-	
 
 	public int getActiveSession() throws MalformedObjectNameException, NullPointerException,
 	InstanceNotFoundException, MBeanException, ReflectionException, IOException {
@@ -64,7 +80,7 @@ public class JmxPoller extends JmxConnector implements Runnable{
 		Object port = msc.invoke(mediaObj, "getActiveSession", new Object[0], new String[0]);
 		return Integer.parseInt(port.toString());
 	}
-	
+
 	@Override
 	public void run() {
 		while(true) {
@@ -75,8 +91,8 @@ public class JmxPoller extends JmxConnector implements Runnable{
 				this.GraphiteLogger.logToGraphite("activeMediaPorts", this.getActiveMediaPorts());
 				this.GraphiteLogger.logToGraphite("activeAppSession", this.getActiveAppSession());
 				this.GraphiteLogger.logToGraphite("activeSession", this.getActiveSession());
-				
-				
+
+
 			} catch ( InterruptedException exception ){
 				System.out.println("SHIT -> " + exception);
 			} catch (MalformedObjectNameException e) {

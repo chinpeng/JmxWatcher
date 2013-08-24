@@ -11,7 +11,7 @@ import javax.management.remote.JMXServiceURL;
 public class JmxConnector {
 
 	MBeanServerConnection msc = null;
-	
+
 	public JmxConnector(String jmxServer, String username, String password) throws Exception {
 		JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://" + jmxServer + "/rmi");
 		Map<String, String[]> env = new Hashtable<String, String[]>();
@@ -24,5 +24,12 @@ public class JmxConnector {
 			msc = JMXConnectorFactory.connect(url, null).getMBeanServerConnection();
 		}
 	}
+
+
+  public JmxConnector(String jmxServer) throws Exception {
+    JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://" + jmxServer + "/rmi");
+    Map<String, String[]> env = new Hashtable<String, String[]>();
+    msc = JMXConnectorFactory.connect(url, null).getMBeanServerConnection();
+  }
 
 }
